@@ -20,7 +20,7 @@ src_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 src_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 fps = cap.get(cv2.CAP_PROP_FPS) or 20
 
-frame_step = 3
+frame_step = 4
 outputfps = fps / frame_step
 
 width = 40
