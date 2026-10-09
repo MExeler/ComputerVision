@@ -24,6 +24,7 @@ counter = solutions.ObjectCounter(
     tracker="botsort.yaml",  # choose trackers, e.g., "bytetrack.yaml"
     show_boxes = True,
     show_in =True,
+    #imgsz= (w,h)
    # device=0
 )
 

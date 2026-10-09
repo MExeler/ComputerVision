@@ -43,7 +43,7 @@ counter = solutions.ObjectCounter(
     show=True,  # display the output
     region=region_points,  # pass region points
     model="yolo26n.pt",  # model="yolo26n-obb.pt" for object counting with OBB model.
-    classes=[0],  # count specific classes, e.g., person and car with the COCO pretrained model.
+    classes=[18],  # count specific classes, e.g., person and car with the COCO pretrained model.
     tracker="botsort.yaml",  # choose trackers, e.g., "bytetrack.yaml"
     show_boxes = True,
     #device=0 #should choose gpu if available
@@ -51,6 +51,7 @@ counter = solutions.ObjectCounter(
     show_out = True,
     show_labels = True,
     #imgsz=320,
+    #imgsz=(h,w),
 )
 
 
