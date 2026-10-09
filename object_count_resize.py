@@ -18,10 +18,10 @@ assert cap.isOpened(), "Error reading video file"
 # Video writer
 src_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 src_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-fps = cap.get(cv2.CAP_PROP_FPS) or 20
+fps = cap.get(cv2.CAP_PROP_FPS)
 
 
-frame_step = 1
+frame_step = 2
 outputfps = fps / frame_step
 
 width = 40
@@ -43,7 +43,7 @@ counter = solutions.ObjectCounter(
     show=True,  # display the output
     region=region_points,  # pass region points
     model="yolo26n.pt",  # model="yolo26n-obb.pt" for object counting with OBB model.
-    classes=[18],  # count specific classes, e.g., person and car with the COCO pretrained model.
+    classes=[0],  # count specific classes, e.g., person and car with the COCO pretrained model.
     tracker="botsort.yaml",  # choose trackers, e.g., "bytetrack.yaml"
     show_boxes = True,
     #device=0 #should choose gpu if available
@@ -58,20 +58,23 @@ counter = solutions.ObjectCounter(
 
 # Process video
 frame_index = 0
-while cap.isOpened():
-    success, im0 = cap.read()
-    if not success:
-        print("Video frame is empty or processing is complete.")
-        break
-    frame_index += 1
-    if frame_index % frame_step != 0:
-        continue
-    im0 = cv2.resize(im0, (w, h))
-    print()
-    results = counter(im0)
-    video_writer.write(results.plot_im)
-
-
-cap.release()
-video_writer.release()
-cv2.destroyAllWindows()  # destroy all opened windows
+try:
+    while cap.isOpened():
+        success, im0 = cap.read()
+        if not success:
+            print("Video frame is empty or processing is complete.")
+            break
+        frame_index += 1
+        if frame_index % frame_step != 0:
+            continue
+        im0 = cv2.resize(im0, (w, h))
+        print()
+        results = counter(im0)
+        video_writer.write(results.plot_im)
+        print(counter.out_count + counter.in_count)
+except KeyboardInterrupt:
+    print('Count abgebrochen')
+finally:
+    cap.release()
+    video_writer.release()
+    cv2.destroyAllWindows()  # destroy all opened windows

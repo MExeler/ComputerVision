@@ -30,19 +30,24 @@ counter = solutions.ObjectCounter(
 
 
 # Process video
-while cap.isOpened():
-    success, im0 = cap.read()
 
-    if not success:
-        print("Video frame is empty or processing is complete.")
-        break
-
-    results = counter(im0)
-
-    # print(results)  # access the output
-
-    video_writer.write(results.plot_im)  # write the processed frame.
-
-cap.release()
-video_writer.release()
-cv2.destroyAllWindows()  # destroy all opened windows
+try:
+    while cap.isOpened():
+        success, im0 = cap.read()
+        
+        if not success:
+            print("Video frame is empty or processing is complete.")
+            break
+        
+        results = counter(im0)
+        
+        # print(results)  # access the output
+        
+        video_writer.write(results.plot_im)  # write the processed frame.
+        
+except KeyboardInterrupt:
+    print('Count abgebrochen')
+finally:
+    cap.release()
+    video_writer.release()
+    cv2.destroyAllWindows()  # destroy all opened windows
