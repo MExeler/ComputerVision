@@ -1,5 +1,16 @@
 Venv einrichten
 
-pip install -U ultralytics \n
-pip install opencv-python \n
-pip install imageio[ffmpeg] \n
+pip install -U ultralytics 
+pip install opencv-python 
+pip install imageio[ffmpeg] 
+
+
+# Computer Vision with Yolo / OpenCV
+Computer Vision project to detect refrigerators
+## How to install:
+Venv einrichten, Python installieren etc
+```
+pip install -U ultralytics 
+pip install opencv-python 
+pip install imageio[ffmpeg] 
+```
