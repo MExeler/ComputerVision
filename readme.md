@@ -1,5 +1,5 @@
 Venv einrichten
 
-pip install -U ultralytics 
-pip install opencv-python
-pip install imageio[ffmpeg]
+pip install -U ultralytics \n
+pip install opencv-python \n
+pip install imageio[ffmpeg] \n
